@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elijah Bodipo Obiang | Data Scientist & MLOps Engineer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Ingénieur Mathématicien et Data Scientist spécialisé en Machine Learning, Deep Learning et MLOps. Expert en déploiement cloud, pipelines de données et modèles explicables.">
+    <meta name="keywords" content="Data Scientist, MLOps, Machine Learning, Deep Learning, GenAI, Python, Dagster, Docker, Kubernetes, Neo4j, PostgreSQL">
+    <meta name="author" content="Elijah Bodipo Obiang">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Elijah Bodipo Obiang | Data Scientist & MLOps Engineer">
+    <meta property="og:description" content="Portfolio professionnel - Ingénieur Mathématicien spécialisé en ML/DL, MLOps et solutions data cloud-native.">
+    <meta property="og:url" content="https://elijahbodipo.github.io">
+    <meta property="og:site_name" content="Elijah Bodipo Obiang Portfolio">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Elijah Bodipo Obiang | Data Scientist & MLOps">
+    <meta name="twitter:description" content="Portfolio professionnel - Expert ML/DL, MLOps et Data Engineering">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient);
+            opacity: 0.1;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(10%) translateY(-10%); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .skill-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-header {
+            background: var(--gradient);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .project-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-company {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            width: calc(50% - 2rem);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .blog-card.featured {
+            grid-column: span 1;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+        }
+
+        @media (min-width: 1200px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .blog-card.featured:first-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .blog-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .blog-card.featured .blog-image {
+            height: 100%;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .blog-category {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .blog-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .blog-content h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .blog-card.featured .blog-content h3 {
+            font-size: 1.6rem;
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-read-more {
+            align-self: flex-start;
+            background: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn-read-more:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Newsletter CTA */
+        .newsletter-cta {
+            background: var(--card-bg);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .newsletter-cta h3 {
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-cta p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid rgba(100, 116, 139, 0.3);
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: 2rem;
+            }
+
+            .timeline-date {
+                left: 0;
+                transform: translateX(0);
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-card.featured {
+                grid-column: span 1;
+                grid-template-columns: 1fr;
+            }
+
+            .blog-card.featured .blog-image {
+                height: 200px;
+            }
+
+            .newsletter-cta {
+                padding: 2rem 1rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                min-width: 100%;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#future-projects">Projets Futurs</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#experience">Expérience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Elijah Bodipo Obiang</h1>
+            <p class="subtitle">Data Scientist & MLOps Engineer</p>
+            <p class="tagline">
+                Je transforme les données en solutions intelligentes et industrialisées.<br>
+                Spécialisé en Machine Learning, Deep Learning et déploiement cloud.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">Découvrir mes projets</a>
+                <a href="#contact" class="btn btn-secondary">Me contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Visualization Section with Charts -->
+    <section id="skills-viz" style="background: rgba(15, 23, 42, 0.5); padding: 5rem 2rem;">
+        <h2 class="section-title">📊 Compétences en Chiffres</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; max-width: 1400px; margin: 0 auto;">
+            
+            <!-- Technical Skills Radar Chart -->
+            <div class="project-card fade-in" style="padding: 2rem;">
+                <h3 style="color: var(--accent-color); text-align: center; margin-bottom: 2rem;">Stack Technique</h3>
+                <canvas id="skillsRadar"></canvas>
+            </div>
+
+            <!-- Project Timeline -->
+            <div class="project-card fade-in" style="padding: 2rem;">
+                <h3 style="color: var(--accent-color); text-align: center; margin-bottom: 2rem;">Évolution des Projets</h3>
+                <canvas id="projectsTimeline"></canvas>
+            </div>
+
+            <!-- Technologies Distribution -->
+            <div class="project-card fade-in" style="padding: 2rem;">
+                <h3 style="color: var(--accent-color); text-align: center; margin-bottom: 2rem;">Technologies Utilisées</h3>
+                <canvas id="techDoughnut"></canvas>
+            </div>
+
+            <!-- Experience Progress -->
+            <div class="project-card fade-in" style="padding: 2rem;">
+                <h3 style="color: var(--accent-color); text-align: center; margin-bottom: 2rem;">Domaines d'Expertise</h3>
+                <canvas id="expertiseBar"></canvas>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">À propos</h2>
+        <div class="project-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p class="project-description" style="font-size: 1.1rem;">
+                Ingénieur Mathématicien et Data Scientist passionné par l'intersection entre mathématiques appliquées, 
+                intelligence artificielle et ingénierie logicielle. Mon expertise se concentre sur la création de 
+                pipelines de données robustes, le développement de modèles ML explicables et leur mise en production 
+                dans des environnements cloud-native.
+            </p>
+            <p class="project-description" style="font-size: 1.1rem; margin-top: 1rem;">
+                J'ai eu l'opportunité de travailler sur des projets industriels complexes, de la maintenance prédictive 
+                à l'analyse qualité dans le secteur pharmaceutique, en passant par le traitement de signaux neurologiques.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Compétences Techniques</h2>
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <h3>🤖 Machine Learning & Deep Learning</h3>
+                <p class="project-description">
+                    Développement et optimisation de modèles prédictifs pour la classification, 
+                    la détection d'anomalies et l'analyse de séries temporelles.
+                </p>
+                <div class="skill-tags">
+                    <span class="tag">Random Forest</span>
+                    <span class="tag">XGBoost</span>
+                    <span class="tag">SVM</span>
+                    <span class="tag">CNN</span>
+                    <span class="tag">LSTM</span>
+                    <span class="tag">GNN</span>
+                    <span class="tag">SHAP</span>
+                </div>
+            </div>
+
+            <div class="skill-card fade-in">
+                <h3>🔧 Data Engineering & MLOps</h3>
+                <p class="project-description">
+                    Conception de pipelines ETL automatisés et orchestration de workflows 
+                    pour une mise en production fiable et scalable.
+                </p>
+                <div class="skill-tags">
+                    <span class="tag">Dagster</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Kubernetes</span>
+                    <span class="tag">GitLab CI/CD</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Neo4j</span>
+                </div>
+            </div>
+
+            <div class="skill-card fade-in">
+                <h3>☁️ Cloud & Infrastructure</h3>
+                <p class="project-description">
+                    Déploiement et gestion d'applications data-intensive sur des architectures 
+                    cloud-native avec focus sur la performance et la sécurité.
+                </p>
+                <div class="skill-tags">
+                    <span class="tag">AWS (S3, Athena)</span>
+                    <span class="tag">MinIO</span>
+                    <span class="tag">Rancher</span>
+                    <span class="tag">InfluxDB</span>
+                    <span class="tag">DuckDB</span>
+                </div>
+            </div>
+
+            <div class="skill-card fade-in">
+                <h3>📊 Data Science & Analytics</h3>
+                <p class="project-description">
+                    Analyse exploratoire, visualisation et modélisation statistique pour 
+                    extraire des insights actionnables à partir de données complexes.
+                </p>
+                <div class="skill-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Scikit-learn</span>
+                    <span class="tag">PyTorch</span>
+                    <span class="tag">TensorFlow</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Projets Majeurs</h2>
+        <div class="projects-grid">
+            
+            <!-- bioMérieux Project -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <h3>Pipeline ML pour Contrôle Qualité Pharmaceutique</h3>
+                    <p class="project-company">bioMérieux • Lyon • 2025</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Conception et déploiement d'un système complet d'analyse qualité intégrant automatisation 
+                        des données, machine learning explicable et traçabilité via graphes de connaissances. 
+                        Solution industrialisée avec orchestration Dagster et déploiement Kubernetes.
+                    </p>
+                    
+                    <div class="impact-metrics">
+                        <div class="metric">
+                            <span class="metric-value">100%</span>
+                            <span class="metric-label">Automatisation pipeline</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">4</span>
+                            <span class="metric-label">Modèles ML déployés</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">Real-time</span>
+                            <span class="metric-label">Alertes Teams</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Réalisations clés</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Pipeline ETL automatisé consolidant SAP, Minitab et PostgreSQL</li>
+                        <li>Modèles ML (Random Forest, XGBoost) avec interprétabilité SHAP</li>
+                        <li>Graphe de traçabilité Neo4j pour analyse qualité produit-composant</li>
+                        <li>Optimisation SQL avancée (indexation, vues matérialisées)</li>
+                        <li>Web app de monitoring avec dashboards interactifs (Shiny)</li>
+                        <li>CI/CD complet avec GitLab, Docker et Kubernetes</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">Python</span>
+                        <span class="tag">Dagster</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Neo4j</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Kubernetes</span>
+                        <span class="tag">GitLab CI/CD</span>
+                        <span class="tag">SHAP</span>
+                        <span class="tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEW-USOCOME Project -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <h3>Maintenance Prédictive Industrielle</h3>
+                    <p class="project-company">SEW-USOCOME • Haguenau • 2024</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Développement d'un système de détection d'anomalies en temps réel pour la maintenance 
+                        prédictive d'équipements industriels. Utilisation d'algorithmes de stream clustering 
+                        pour identifier les comportements anormaux avant défaillance.
+                    </p>
+                    
+                    <div class="impact-metrics">
+                        <div class="metric">
+                            <span class="metric-value">Real-time</span>
+                            <span class="metric-label">Détection anomalies</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">↓30%</span>
+                            <span class="metric-label">Faux positifs</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Réalisations clés</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Implémentation d'algorithmes de stream clustering pour données IoT</li>
+                        <li>Optimisation des modèles de détection (précision et réduction faux positifs)</li>
+                        <li>Interface Shiny pour visualisation micro-clusters et alertes en temps réel</li>
+                        <li>Analyse de séries temporelles industrielles multi-capteurs</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">Python</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Stream Clustering</span>
+                        <span class="tag">Shiny</span>
+                        <span class="tag">Time Series</span>
+                        <span class="tag">Anomaly Detection</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medical Image Segmentation -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <h3>Segmentation d'Images Médicales (Deep Learning)</h3>
+                    <p class="project-company">Projet Personnel • 2024</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Développement de modèles CNN/U-Net pour la segmentation et classification automatique 
+                        de structures biomédicales. Utilisation de techniques avancées d'augmentation de données 
+                        et d'optimisation pour maximiser la performance.
+                    </p>
+
+                    <div class="impact-metrics">
+                        <div class="metric">
+                            <span class="metric-value">0.92</span>
+                            <span class="metric-label">Dice Score</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">95%+</span>
+                            <span class="metric-label">AUC</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Techniques utilisées</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Architecture U-Net optimisée pour segmentation précise</li>
+                        <li>Data augmentation avancée (Albumentations)</li>
+                        <li>Test-Time Augmentation (TTA) pour robustesse</li>
+                        <li>Métriques spécialisées : Dice, IoU, Recall, Precision</li>
+                        <li>Tracking d'expériences avec Weights & Biases</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">Python</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">U-Net</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Albumentations</span>
+                        <span class="tag">W&B</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Time Series -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <h3>Prévision Financière avec LSTM</h3>
+                    <p class="project-company">Projet Personnel • 2024</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Modélisation de séries temporelles financières avec réseaux LSTM pour prédiction 
+                        de prix. Comparaison avec méthodes traditionnelles (ARIMA, Prophet) et validation 
+                        rigoureuse via backtesting.
+                    </p>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Approche méthodologique</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Architecture LSTM multi-couches avec fenêtrage glissant</li>
+                        <li>Feature engineering : indicateurs techniques et lags temporels</li>
+                        <li>Comparaison LSTM vs ARIMA vs Prophet</li>
+                        <li>Backtesting et validation walk-forward</li>
+                        <li>Tracking MLflow pour reproductibilité</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">Python</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Keras</span>
+                        <span class="tag">LSTM</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">MLflow</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantum Cryptography -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <h3>Cryptographie Quantique - Protocole BB84</h3>
+                    <p class="project-company">Projet Académique • 2024</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Implémentation et simulation d'un protocole de distribution quantique de clés (QKD) 
+                        BB84. Analyse de sécurité face aux attaques d'interception avec calcul du QBER 
+                        (Quantum Bit Error Rate).
+                    </p>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Implémentation</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Simulation complète du protocole BB84 (génération, transmission, sifting)</li>
+                        <li>Correction d'erreurs et privacy amplification</li>
+                        <li>Modélisation d'attaque Eve (eavesdropping)</li>
+                        <li>Analyse statistique du QBER pour détection d'intrusion</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">Python</span>
+                        <span class="tag">Qiskit</span>
+                        <span class="tag">NumPy</span>
+                        <span class="tag">Quantum Computing</span>
+                        <span class="tag">Cryptography</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GenAI Project - NEW -->
+            <div class="project-card fade-in">
+                <div class="project-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <h3>🤖 Système RAG Multimodal pour Analyse Documentaire</h3>
+                    <p class="project-company">Projet Personnel • 2025</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Développement d'un système RAG (Retrieval-Augmented Generation) avancé combinant 
+                        texte, images et tableaux pour l'analyse intelligente de documents techniques. 
+                        Utilisation de LLMs, embeddings multimodaux et bases vectorielles pour des 
+                        réponses contextuelles précises.
+                    </p>
+                    
+                    <div class="impact-metrics">
+                        <div class="metric">
+                            <span class="metric-value">95%</span>
+                            <span class="metric-label">Précision réponses</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">&lt;2s</span>
+                            <span class="metric-label">Temps réponse</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">10K+</span>
+                            <span class="metric-label">Documents indexés</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Architecture et fonctionnalités</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Pipeline d'ingestion multimodal (PDF, images, tableaux Excel/CSV)</li>
+                        <li>Embeddings hybrides : texte (OpenAI/Cohere) + vision (CLIP)</li>
+                        <li>Base vectorielle Qdrant avec recherche sémantique et filtrage métadonnées</li>
+                        <li>Fine-tuning de LLM (Mistral 7B) pour domaine technique spécifique</li>
+                        <li>Prompt engineering avancé avec few-shot learning et chain-of-thought</li>
+                        <li>Évaluation automatique (faithfulness, answer relevancy) avec RAGAS</li>
+                        <li>Interface Streamlit avec historique conversationnel et sources citées</li>
+                    </ul>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Optimisations et défis résolus</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Chunking intelligent préservant la cohérence sémantique (RecursiveCharacterTextSplitter)</li>
+                        <li>Gestion du contexte long : stratégies de compression et résumé hiérarchique</li>
+                        <li>Réduction hallucinations via contraintes dans le prompt et vérification croisée</li>
+                        <li>Cache intelligent des embeddings pour réduire coûts API de 70%</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">LangChain</span>
+                        <span class="tag">OpenAI GPT-4</span>
+                        <span class="tag">Mistral</span>
+                        <span class="tag">Qdrant</span>
+                        <span class="tag">CLIP</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">RAGAS</span>
+                        <span class="tag">HuggingFace</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Future Projects Section - NEW -->
+    <section id="future-projects" style="background: rgba(15, 23, 42, 0.5); padding: 5rem 2rem;">
+        <h2 class="section-title">🚀 Projets Futurs & Recherches en Cours</h2>
+        <p style="text-align: center; color: var(--text-secondary); max-width: 900px; margin: 0 auto 3rem; font-size: 1.1rem;">
+            Exploration des technologies émergentes et défis actuels en IA, MLOps et mathématiques appliquées.
+        </p>
+        
+        <div class="projects-grid">
+            
+            <!-- Agentic AI -->
+            <div class="project-card fade-in" style="border: 2px solid rgba(102, 126, 234, 0.4);">
+                <div class="project-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <h3>🤖 Systèmes Multi-Agents avec LangGraph</h3>
+                    <p class="project-company">Q1 2026 • GenAI / Agentic AI</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Développement d'agents IA autonomes coordonnés via LangGraph pour résoudre des tâches 
+                        complexes. Exploration de la mémoire persistante, planification hiérarchique et 
+                        collaboration multi-agents avec outils externes (web search, code execution, APIs).
+                    </p>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Objectifs de recherche</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Architecture d'agents spécialisés : researcher, coder, critic, orchestrator</li>
+                        <li>Graph-based workflow avec états, transitions et feedback loops</li>
+                        <li>Benchmark sur tâches complexes vs agents single-shot</li>
+                        <li>Stratégies d'optimisation : token usage, latence, coût vs qualité</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">LangGraph</span>
+                        <span class="tag">AutoGPT</span>
+                        <span class="tag">CrewAI</span>
+                        <span class="tag">ReAct</span>
+                        <span class="tag">Function Calling</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mixture of Experts -->
+            <div class="project-card fade-in" style="border: 2px solid rgba(102, 126, 234, 0.4);">
+                <div class="project-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <h3>🧩 Fine-tuning de Mixtral MoE pour Domaine Industriel</h3>
+                    <p class="project-company">Q1-Q2 2026 • Large Language Models</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Exploration des architectures Mixture-of-Experts (MoE) avec fine-tuning de Mixtral 8x7B 
+                        sur données industrielles pharmaceutiques. Comparaison avec modèles denses (Llama 3, Mistral) 
+                        sur performances, efficacité computationnelle et capacité de spécialisation.
+                    </p>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Axes de travail</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Dataset création : scraping docs techniques + annotation qualité</li>
+                        <li>Fine-tuning efficient avec LoRA/QLoRA pour réduire coûts mémoire</li>
+                        <li>Analyse du routing : quels experts activés selon le contexte ?</li>
+                        <li>Évaluation robustesse : hallucinations, calibration, out-of-distribution</li>
+                        <li>Déploiement optimisé avec vLLM et quantization (4-bit/8-bit)</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">Mixtral 8x7B</span>
+                        <span class="tag">LoRA</span>
+                        <span class="tag">vLLM</span>
+                        <span class="tag">DeepSpeed</span>
+                        <span class="tag">Weights & Biases</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Causal Inference -->
+            <div class="project-card fade-in" style="border: 2px solid rgba(102, 126, 234, 0.4);">
+                <div class="project-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <h3>📊 Inférence Causale avec DoWhy & EconML</h3>
+                    <p class="project-company">Q2 2026 • Causal ML</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Passage de la corrélation à la causalité en ML. Application de méthodes d'inférence 
+                        causale (DAGs, do-calculus, instruments) pour quantifier l'impact réel d'interventions 
+                        en production pharmaceutique et optimiser les processus.
+                    </p>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Méthodologie</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Construction de graphes causaux (DAGs) à partir de données observationnelles</li>
+                        <li>Méthodes : Propensity Score Matching, Inverse Probability Weighting, Double ML</li>
+                        <li>Causal Discovery : algorithmes PC, GES pour identifier structures causales</li>
+                        <li>Validation via A/B testing et expériences randomisées contrôlées</li>
+                        <li>Applications : optimisation paramètres production, analyse défauts racine</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">DoWhy</span>
+                        <span class="tag">EconML</span>
+                        <span class="tag">CausalML</span>
+                        <span class="tag">DAGs</span>
+                        <span class="tag">PyMC</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MLOps Advanced -->
+            <div class="project-card fade-in" style="border: 2px solid rgba(102, 126, 234, 0.4);">
+                <div class="project-header" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    <h3>⚙️ Platform MLOps End-to-End avec Feast & Evidently</h3>
+                    <p class="project-company">Q2-Q3 2026 • MLOps / Production ML</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Construction d'une plateforme MLOps complète pour industrialiser le cycle de vie ML : 
+                        feature store centralisé, monitoring drift/performance, A/B testing automatisé et 
+                        retraining déclenché. Focus sur la reproductibilité et l'observabilité.
+                    </p>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Composants de la plateforme</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Feature Store (Feast) : versioning, serving online/offline, SLA garantis</li>
+                        <li>Model Registry (MLflow) : lineage tracking, staging, production promotion</li>
+                        <li>Monitoring (Evidently, WhyLabs) : data drift, concept drift, performance decay</li>
+                        <li>Orchestration (Dagster/Prefect) : pipelines training, validation, deployment</li>
+                        <li>Infrastructure as Code (Terraform) : reproductibilité cloud-agnostic</li>
+                        <li>CI/CD ML (GitLab CI, DVC) : tests automatisés, rollback, canary releases</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">Feast</span>
+                        <span class="tag">Evidently</span>
+                        <span class="tag">MLflow</span>
+                        <span class="tag">Great Expectations</span>
+                        <span class="tag">Terraform</span>
+                        <span class="tag">DVC</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graph Neural Networks -->
+            <div class="project-card fade-in" style="border: 2px solid rgba(102, 126, 234, 0.4);">
+                <div class="project-header" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                    <h3>🕸️ GNN pour Prédiction de Propriétés Moléculaires</h3>
+                    <p class="project-company">Q3 2026 • Graph ML / Drug Discovery</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Application de Graph Neural Networks (GCN, GAT, GraphSAGE) pour prédire les propriétés 
+                        physicochimiques de molécules. Utilisation de représentations graphes moléculaires et 
+                        apprentissage de représentations pour accélérer la découverte de médicaments.
+                    </p>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Approche technique</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Représentation moléculaire : atomes (nodes), liaisons (edges), features chimiques</li>
+                        <li>Architectures : Message Passing Neural Networks (MPNN), Graph Attention</li>
+                        <li>Tasks : prédiction toxicité, solubilité, activité biologique</li>
+                        <li>Datasets : MoleculeNet (QM9, ESOL, Tox21), benchmarking vs baselines</li>
+                        <li>Explicabilité : GNNExplainer pour identifier sous-structures importantes</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">PyTorch Geometric</span>
+                        <span class="tag">DGL</span>
+                        <span class="tag">RDKit</span>
+                        <span class="tag">ChemBERTa</span>
+                        <span class="tag">MoleculeNet</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diffusion Models -->
+            <div class="project-card fade-in" style="border: 2px solid rgba(102, 126, 234, 0.4);">
+                <div class="project-header" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                    <h3>🎨 Diffusion Models : De DDPM à Stable Diffusion</h3>
+                    <p class="project-company">Q4 2026 • Generative AI</p>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Exploration approfondie des modèles de diffusion pour génération d'images. 
+                        Implémentation from scratch de DDPM, étude des architectures latent diffusion, 
+                        et fine-tuning de Stable Diffusion pour cas d'usage spécifiques (génération 
+                        de diagrammes techniques, visualisations scientifiques).
+                    </p>
+
+                    <h4 style="color: var(--accent-color); margin-top: 1.5rem; margin-bottom: 0.8rem;">Programme de recherche</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>Théorie : forward/reverse process, score matching, variance schedules</li>
+                        <li>Implémentation : DDPM, DDIM (sampling accéléré), Latent Diffusion Models</li>
+                        <li>Fine-tuning : DreamBooth, LoRA, Textual Inversion sur dataset custom</li>
+                        <li>ControlNet : génération conditionnée (edges, pose, depth maps)</li>
+                        <li>Évaluation : FID, Inception Score, qualité perceptuelle</li>
+                    </ul>
+
+                    <div class="tech-stack">
+                        <span class="tag">Stable Diffusion</span>
+                        <span class="tag">DDPM</span>
+                        <span class="tag">ControlNet</span>
+                        <span class="tag">LoRA</span>
+                        <span class="tag">Diffusers</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Research Interests Box -->
+        <div class="newsletter-cta fade-in" style="margin-top: 4rem; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border: 2px solid rgba(102, 126, 234, 0.3);">
+            <h3>🔬 Domaines de recherche & veille technologique</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; text-align: left;">
+                <div>
+                    <h4 style="color: var(--accent-color); margin-bottom: 0.5rem;">🤖 GenAI & LLMs</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">RAG avancé, Fine-tuning, Agents autonomes, Prompt engineering, Evaluation metrics</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-color); margin-bottom: 0.5rem;">⚙️ MLOps & Production</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Feature stores, Model monitoring, CI/CD ML, Distributed training, Edge deployment</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-color); margin-bottom: 0.5rem;">📊 ML Avancé</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Causal inference, Graph ML, Federated learning, Meta-learning, AutoML</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-color); margin-bottom: 0.5rem;">🧮 Math & Optimization</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Optimal transport, Convex optimization, Bayesian methods, Compressed sensing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience">
+        <h2 class="section-title">Parcours</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">Mars - Août 2025</div>
+                <div class="timeline-content">
+                    <h3 style="color: var(--accent-color);">Data Scientist / MLOps</h3>
+                    <p style="color: var(--text-secondary); margin: 0.5rem 0;"><strong>bioMérieux</strong> • Lyon</p>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        Stage de fin d'études axé sur l'industrialisation de solutions ML pour le contrôle qualité. 
+                        Conception de pipelines end-to-end, développement de modèles explicables et mise en production 
+                        avec orchestration cloud-native.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">Mars - Août 2024</div>
+                <div class="timeline-content">
+                    <h3 style="color: var(--accent-color);">Data Scientist Maintenance Prédictive</h3>
+                    <p style="color: var(--text-secondary); margin: 0.5rem 0;"><strong>SEW-USOCOME</strong> • Haguenau</p>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        Développement de systèmes de détection d'anomalies en temps réel pour équipements industriels. 
+                        Implémentation d'algorithmes de stream clustering et création d'interfaces de monitoring.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2023 - 2025</div>
+                <div class="timeline-content">
+                    <h3 style="color: var(--accent-color);">Master Ingénierie Mathématiques & Data Science</h3>
+                    <p style="color: var(--text-secondary); margin: 0.5rem 0;"><strong>Université de Haute Alsace</strong> • Mulhouse</p>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        Spécialisations : Machine Learning, Deep Learning, Data Engineering, Systèmes distribués, 
+                        Optimisation, Recherche opérationnelle. Formation orientée projets et industrie.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-date">2020 - 2023</div>
+                <div class="timeline-content">
+                    <h3 style="color: var(--accent-color);">Licence Mathématiques - Parcours Recherche</h3>
+                    <p style="color: var(--text-secondary); margin: 0.5rem 0;"><strong>Université de Bourgogne Franche-Comté</strong> • Besançon</p>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        Fondamentaux en analyse, algèbre, statistiques et probabilités. 
+                        Introduction à l'analyse numérique et à la modélisation mathématique.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <h2 class="section-title">Blog & Articles Techniques</h2>
+        <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 3rem;">
+            Analyses approfondies, tests d'algorithmes récents et retours d'expérience sur mes projets Data Science et MLOps.
+        </p>
+        
+        <div class="blog-grid">
+            <!-- Featured Article - Compressive Sensing -->
+            <div class="blog-card featured fade-in">
+                <div class="blog-badge">⭐ Article Vedette</div>
+                <div class="blog-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div style="padding: 3rem; text-align: center; color: white; font-size: 3rem;">📐</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Mathématiques Appliquées</span>
+                        <span class="blog-date">29 Oct 2025</span>
+                    </div>
+                    <h3>Compressive Sensing et Matrices Aléatoires : Réduction de dimension pour le ML</h3>
+                    <p class="blog-excerpt">
+                        Plongée technique dans le compressive sensing, une méthode mathématique puissante pour la 
+                        réduction de dimension. Exploration des propriétés RIP (Restricted Isometry Property), 
+                        matrices aléatoires sous-gaussiennes, lemme de Johnson-Lindenstrauss et applications au 
+                        clustering K-means. De la théorie à l'implémentation pratique.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">Compressive Sensing</span>
+                        <span class="tag">Dimension Reduction</span>
+                        <span class="tag">Random Matrices</span>
+                        <span class="tag">K-means</span>
+                        <span class="tag">RIP</span>
+                    </div>
+                    <button class="btn-read-more">Lire l'article →</button>
+                </div>
+            </div>
+
+            <!-- Second Featured Article - SHAP vs LIME -->
+            <div class="blog-card featured fade-in">
+                <div class="blog-badge">⭐ Article Populaire</div>
+                <div class="blog-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div style="padding: 3rem; text-align: center; color: white; font-size: 3rem;">🧠</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Deep Learning</span>
+                        <span class="blog-date">15 Oct 2025</span>
+                    </div>
+                    <h3>SHAP vs LIME : Quelle méthode d'explicabilité choisir pour vos modèles ML ?</h3>
+                    <p class="blog-excerpt">
+                        Comparaison approfondie de SHAP et LIME sur des cas réels de classification. 
+                        Analyse des performances, temps de calcul, stabilité des explications et recommandations 
+                        pratiques selon le contexte d'utilisation. Tests sur Random Forest, XGBoost et réseaux de neurones.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">XAI</span>
+                        <span class="tag">SHAP</span>
+                        <span class="tag">LIME</span>
+                        <span class="tag">Interpretability</span>
+                    </div>
+                    <button class="btn-read-more">Lire l'article →</button>
+                </div>
+            </div>
+
+            <!-- Regular Articles -->
+            <div class="blog-card fade-in">
+                <div class="blog-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div style="padding: 2rem; text-align: center; color: white; font-size: 2.5rem;">📊</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">MLOps</span>
+                        <span class="blog-date">8 Oct 2025</span>
+                    </div>
+                    <h3>Dagster vs Airflow : Retour d'expérience sur l'orchestration de pipelines ML</h3>
+                    <p class="blog-excerpt">
+                        Après 6 mois d'utilisation de Dagster en production chez bioMérieux, voici mon analyse 
+                        comparative avec Apache Airflow. Assets-based orchestration, testing, observabilité et 
+                        courbe d'apprentissage décortiqués.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">Dagster</span>
+                        <span class="tag">Airflow</span>
+                        <span class="tag">Orchestration</span>
+                    </div>
+                    <button class="btn-read-more">Lire l'article →</button>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in">
+                <div class="blog-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div style="padding: 2rem; text-align: center; color: white; font-size: 2.5rem;">🔍</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Anomaly Detection</span>
+                        <span class="blog-date">1 Oct 2025</span>
+                    </div>
+                    <h3>Stream Clustering en production : défis et solutions pour l'IoT industriel</h3>
+                    <p class="blog-excerpt">
+                        Retour d'expérience sur l'implémentation d'algorithmes de clustering en flux pour la 
+                        maintenance prédictive. Gestion de la mémoire, drift detection, choix d'hyperparamètres 
+                        et validation sur données réelles.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">Clustering</span>
+                        <span class="tag">IoT</span>
+                        <span class="tag">Real-time</span>
+                    </div>
+                    <button class="btn-read-more">Lire l'article →</button>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in">
+                <div class="blog-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <div style="padding: 2rem; text-align: center; color: white; font-size: 2.5rem;">🎯</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Computer Vision</span>
+                        <span class="blog-date">24 Sep 2025</span>
+                    </div>
+                    <h3>U-Net vs SegFormer : Architectures modernes pour la segmentation médicale</h3>
+                    <p class="blog-excerpt">
+                        Comparaison architecturale et empirique entre U-Net classique et SegFormer (Vision Transformer). 
+                        Benchmarks sur datasets médicaux, analyse de la complexité computationnelle et stratégies 
+                        d'augmentation adaptées.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">Segmentation</span>
+                        <span class="tag">Transformers</span>
+                        <span class="tag">Medical AI</span>
+                    </div>
+                    <button class="btn-read-more">Lire l'article →</button>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in">
+                <div class="blog-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    <div style="padding: 2rem; text-align: center; color: white; font-size: 2.5rem;">⚡</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Optimization</span>
+                        <span class="blog-date">17 Sep 2025</span>
+                    </div>
+                    <h3>Optimiser PostgreSQL pour la Data Science : Indexation et requêtes complexes</h3>
+                    <p class="blog-excerpt">
+                        Guide pratique d'optimisation SQL pour pipelines data-intensive. Stratégies d'indexation, 
+                        vues matérialisées, EXPLAIN ANALYZE, partitionnement et bonnes pratiques issues de 
+                        l'analyse de 10M+ lignes en production.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Performance</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                    <button class="btn-read-more">Lire l'article →</button>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in">
+                <div class="blog-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                    <div style="padding: 2rem; text-align: center; color: white; font-size: 2.5rem;">🚀</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Time Series</span>
+                        <span class="blog-date">10 Sep 2025</span>
+                    </div>
+                    <h3>LSTM vs Temporal Fusion Transformer : Prévision de séries temporelles en 2025</h3>
+                    <p class="blog-excerpt">
+                        Le Temporal Fusion Transformer (TFT) surpasse-t-il vraiment les LSTM ? Expérimentations 
+                        sur données financières et industrielles, analyse de l'attention temporelle et recommandations 
+                        selon la complexité des patterns.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">LSTM</span>
+                        <span class="tag">TFT</span>
+                        <span class="tag">Forecasting</span>
+                    </div>
+                    <button class="btn-read-more">Lire l'article →</button>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in">
+                <div class="blog-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                    <div style="padding: 2rem; text-align: center; color: white; font-size: 2.5rem;">🔐</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Quantum</span>
+                        <span class="blog-date">3 Sep 2025</span>
+                    </div>
+                    <h3>Cryptographie quantique pour les data scientists : Au-delà du protocole BB84</h3>
+                    <p class="blog-excerpt">
+                        Introduction accessible à la cryptographie post-quantique et ses implications pour la sécurité 
+                        des modèles ML. Implémentation pratique avec Qiskit, analyse de robustesse et perspectives 
+                        pour les infrastructures MLOps sécurisées.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">Quantum Computing</span>
+                        <span class="tag">Security</span>
+                        <span class="tag">Cryptography</span>
+                    </div>
+                    <button class="btn-read-more">Lire l'article →</button>
+                </div>
+            </div>
+
+            <div class="blog-card fade-in">
+                <div class="blog-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                    <div style="padding: 2rem; text-align: center; color: white; font-size: 2.5rem;">🌐</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Graph ML</span>
+                        <span class="blog-date">27 Août 2025</span>
+                    </div>
+                    <h3>Neo4j + NetworkX : Traçabilité industrielle via Graph Neural Networks</h3>
+                    <p class="blog-excerpt">
+                        Comment exploiter les graphes de connaissances pour améliorer la qualité produit ? 
+                        Architecture hybride Neo4j/NetworkX, algorithmes de propagation, GNN pour prédiction 
+                        de défauts et visualisation interactive des chemins critiques.
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag">GNN</span>
+                        <span class="tag">Traceability</span>
+                    </div>
+                    <button class="btn-read-more">Lire l'article →</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Newsletter CTA -->
+        <div class="newsletter-cta fade-in">
+            <h3>📬 Restez informé des nouveaux articles</h3>
+            <p>Recevez mes analyses techniques et retours d'expérience directement dans votre boîte mail.</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="votre@email.com" class="newsletter-input">
+                <button class="btn btn-primary">S'abonner</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Me Contacter</h2>
+        <div class="contact-grid">
+            <div class="contact-card fade-in">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <a href="mailto:bodipoobiangelijah@gmail.com">bodipoobiangelijah@gmail.com</a>
+            </div>
+
+            <div class="contact-card fade-in">
+                <div class="contact-icon">📱</div>
+                <h3>Téléphone</h3>
+                <a href="tel:+33745068308">+33 7 45 06 83 08</a>
+            </div>
+
+            <div class="contact-card fade-in">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/elijah-loïc-bodipo-obiang" target="_blank">Voir mon profil</a>
+            </div>
+
+            <div class="contact-card fade-in">
+                <div class="contact-icon">📍</div>
+                <h3>Localisation</h3>
+                <p style="color: var(--text-secondary);">Villeurbanne, France</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Elijah Bodipo Obiang. Tous droits réservés.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            Ingénieur Mathématicien • Data Scientist • MLOps Engineer
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scroll animation on elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').substring(1) === current) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Charts Initialization -->
+    <script>
+        // Chart.js default configuration
+        Chart.defaults.color = '#cbd5e1';
+        Chart.defaults.borderColor = 'rgba(100, 116, 139, 0.2)';
+        Chart.defaults.font.family = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+
+        // Skills Radar Chart
+        const skillsRadarCtx = document.getElementById('skillsRadar');
+        const skillsRadarChart = new Chart(skillsRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Python', 'ML/DL', 'MLOps', 'Cloud', 'Databases', 'Math/Stats'],
+                datasets: [{
+                    label: 'Niveau d\'expertise',
+                    data: [95, 90, 85, 80, 88, 92],
+                    backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(102, 126, 234, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            stepSize: 20,
+                            backdropColor: 'transparent'
+                        },
+                        grid: {
+                            color: 'rgba(100, 116, 139, 0.3)'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Projects Timeline Chart
+        const projectsTimelineCtx = document.getElementById('projectsTimeline');
+        const projectsTimelineChart = new Chart(projectsTimelineCtx, {
+            type: 'line',
+            data: {
+                labels: ['2022', '2023', '2024', '2025', '2026'],
+                datasets: [{
+                    label: 'Projets complétés',
+                    data: [2, 4, 8, 12, 18],
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 5,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 2
+                        },
+                        grid: {
+                            color: 'rgba(100, 116, 139, 0.2)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Technologies Doughnut Chart
+        const techDoughnutCtx = document.getElementById('techDoughnut');
+        const techDoughnutChart = new Chart(techDoughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Python', 'ML Frameworks', 'Cloud/DevOps', 'Databases', 'Visualization', 'Autres'],
+                datasets: [{
+                    data: [30, 25, 20, 12, 8, 5],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.8)',
+                        'rgba(118, 75, 162, 0.8)',
+                        'rgba(240, 147, 251, 0.8)',
+                        'rgba(79, 172, 254, 0.8)',
+                        'rgba(250, 112, 154, 0.8)',
+                        'rgba(168, 237, 234, 0.8)'
+                    ],
+                    borderColor: '#0f172a',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Expertise Bar Chart
+        const expertiseBarCtx = document.getElementById('expertiseBar');
+        const expertiseBarChart = new Chart(expertiseBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['GenAI', 'Deep Learning', 'MLOps', 'Data Engineering', 'Math Appliquées'],
+                datasets: [{
+                    label: 'Projets',
+                    data: [3, 5, 6, 7, 4],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.8)',
+                        'rgba(118, 75, 162, 0.8)',
+                        'rgba(240, 147, 251, 0.8)',
+                        'rgba(79, 172, 254, 0.8)',
+                        'rgba(250, 112, 154, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(102, 126, 234, 1)',
+                        'rgba(118, 75, 162, 1)',
+                        'rgba(240, 147, 251, 1)',
+                        'rgba(79, 172, 254, 1)',
+                        'rgba(250, 112, 154, 1)'
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(100, 116, 139, 0.2)'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Animate charts on scroll
+        const chartsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const canvas = entry.target.querySelector('canvas');
+                    if (canvas) {
+                        canvas.style.opacity = '0';
+                        canvas.style.transform = 'translateY(20px)';
+                        canvas.style.transition = 'all 0.8s ease';
+                        setTimeout(() => {
+                            canvas.style.opacity = '1';
+                            canvas.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('#skills-viz .project-card').forEach(card => {
+            chartsObserver.observe(card);
+        });
+    </script>
+</body>
+</html>
