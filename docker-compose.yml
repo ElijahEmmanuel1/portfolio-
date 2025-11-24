@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: axiom-portal-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://axiom:securepassword@postgres:5432/axiom_db
+      - MINIO_ENDPOINT=http://minio:9000
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+      - MINIO_BUCKET_NAME=user-avatars
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/api
+    depends_on:
+      - postgres
+      - minio
+    networks:
+      - axiom-network
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: axiom-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=axiom
+      - POSTGRES_PASSWORD=securepassword
+      - POSTGRES_DB=axiom_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - axiom-network
+
+  # MinIO Object Storage
+  minio:
+    image: minio/minio:latest
+    container_name: axiom-minio
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - axiom-network
+
+  # Create default bucket in MinIO
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc config host add myminio http://minio:9000 minioadmin minioadmin;
+      /usr/bin/mc mb myminio/user-avatars;
+      /usr/bin/mc anonymous set public myminio/user-avatars;
+      exit 0;
+      "
+    networks:
+      - axiom-network
+
+networks:
+  axiom-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  minio_data:

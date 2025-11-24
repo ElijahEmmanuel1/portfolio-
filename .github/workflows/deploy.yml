@@ -1,0 +1,176 @@
+# CD - Déploiement en Production
+
+name: CD - Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Vérifier que les tests CI sont passés
+  check-ci:
+    name: ✅ Verify CI Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check CI workflow status
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: workflows } = await github.rest.actions.listWorkflowRunsForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            branch: context.ref.replace('refs/heads/', ''),
+            event: 'push',
+            status: 'completed',
+            per_page: 10
+          });
+          
+          const ciWorkflow = workflows.workflow_runs.find(run => 
+            run.name === 'CI - Tests et Qualité' && 
+            run.head_sha === context.sha
+          );
+          
+          if (!ciWorkflow || ciWorkflow.conclusion !== 'success') {
+            core.setFailed('CI tests must pass before deployment');
+          }
+
+  build:
+    name: 🏗️ Build Docker Image
+    needs: check-ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=sha
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+  deploy:
+    name: 🚀 Deploy to Kubernetes
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    environment:
+      name: production
+      url: https://axiom-portal.example.com
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    - name: Configure kubectl
+      run: |
+        echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > kubeconfig
+        export KUBECONFIG=./kubeconfig
+
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl apply -f k8s/namespace.yaml
+        kubectl apply -f k8s/configmap.yaml
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
+        kubectl apply -f k8s/hpa.yaml
+        kubectl rollout status deployment/axiom-portal -n axiom-portal --timeout=5m
+
+    - name: Verify deployment
+      run: |
+        kubectl get all -n axiom-portal
+        kubectl get hpa -n axiom-portal
+
+    - name: Run smoke tests
+      run: |
+        # Attendre que le service soit prêt
+        kubectl wait --for=condition=available --timeout=300s deployment/axiom-portal -n axiom-portal
+        
+        # Obtenir l'URL du service
+        SERVICE_IP=$(kubectl get svc axiom-portal-service -n axiom-portal -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+        
+        # Test de santé
+        if [ -n "$SERVICE_IP" ]; then
+          curl --fail --retry 5 --retry-delay 10 http://$SERVICE_IP || exit 1
+          echo "✅ Smoke test passed"
+        else
+          echo "⚠️ LoadBalancer IP not yet assigned, skipping smoke test"
+        fi
+
+    - name: Create deployment annotation
+      run: |
+        kubectl annotate deployment axiom-portal -n axiom-portal \
+          kubernetes.io/change-cause="Deployed by GitHub Actions - SHA: ${{ github.sha }}" \
+          --overwrite
+
+  # Job de notification
+  notify:
+    name: 📢 Notify Deployment
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Deployment Success
+      if: needs.deploy.result == 'success'
+      run: |
+        echo "🎉 Deployment to production successful!"
+        echo "Version: ${{ github.sha }}"
+        echo "Deployed by: ${{ github.actor }}"
+    
+    - name: Deployment Failed
+      if: needs.deploy.result == 'failure'
+      run: |
+        echo "❌ Deployment failed!"
+        exit 1

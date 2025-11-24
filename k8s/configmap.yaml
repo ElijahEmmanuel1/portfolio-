@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: axiom-portal-config
+  namespace: axiom-portal
+data:
+  NEXT_PUBLIC_APP_NAME: "AXIOM AI Portal"
+  NEXT_PUBLIC_APP_VERSION: "2.0.0"
+  NEXT_PUBLIC_ENVIRONMENT: "production"

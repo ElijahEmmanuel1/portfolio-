@@ -1,0 +1,109 @@
+# Tests Planifiés - Vérifications régulières
+
+name: Scheduled Tests
+
+on:
+  schedule:
+    # Tous les jours à 2h du matin
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  # Tests de santé en production
+  health-check:
+    name: 🏥 Production Health Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check production endpoint
+      run: |
+        # Remplacer par votre URL de production
+        PROD_URL="https://axiom-portal.example.com"
+        
+        # Test de disponibilité
+        if curl --fail --silent --max-time 10 "$PROD_URL" > /dev/null; then
+          echo "✅ Production is healthy"
+        else
+          echo "❌ Production health check failed"
+          exit 1
+        fi
+
+    - name: Check API endpoints
+      run: |
+        # Tester les endpoints critiques
+        curl --fail https://axiom-portal.example.com/api/health || exit 1
+        echo "✅ API endpoints are responding"
+
+  # Tests de performance
+  performance-tests:
+    name: ⚡ Performance Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run k6 performance tests
+      uses: grafana/k6-action@v0.3.0
+      with:
+        filename: tests/performance/load-test.js
+      continue-on-error: true
+
+  # Scan de sécurité
+  security-scan:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload results
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  # Vérifier les dépendances obsolètes
+  dependency-check:
+    name: 📦 Dependency Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Check outdated packages
+      run: |
+        npm outdated || echo "Some packages are outdated"
+
+    - name: Check for updates
+      run: |
+        npx npm-check-updates -u --target minor || echo "Updates available"
+
+  # Notification
+  notify:
+    name: 📢 Notify Results
+    needs: [health-check, security-scan, dependency-check]
+    runs-on: ubuntu-latest
+    if: failure()
+    
+    steps:
+    - name: Send notification
+      run: |
+        echo "⚠️ Scheduled tests detected issues!"
+        echo "Health Check: ${{ needs.health-check.result }}"
+        echo "Security Scan: ${{ needs.security-scan.result }}"
+        echo "Dependencies: ${{ needs.dependency-check.result }}"

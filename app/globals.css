@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* VisionOS Premium Theme */
+    --background: 231 68% 5%;
+    /* #030616 Deep Navy */
+    --foreground: 210 40% 98%;
+    /* #F0F4F8 */
+
+    --card: 231 68% 8%;
+    /* Slightly lighter navy */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 231 68% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 190 90% 49%;
+    /* #0CCAF0 Cyan */
+    --primary-foreground: 231 68% 5%;
+
+    --secondary: 250 100% 65%;
+    /* #6A4CFF Violet */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 231 50% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 231 50% 15%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 231 50% 15%;
+    --input: 231 50% 15%;
+    --ring: 190 90% 49%;
+
+    --radius: 1rem;
+
+    --neon-cyan: #00F0FF;
+    --neon-purple: #7000FF;
+    --grid-color: rgba(12, 202, 240, 0.1);
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Utilities */
+.glass-panel {
+  @apply bg-[#0A1026]/60 backdrop-blur-2xl border border-white/10;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel-hover {
+  @apply hover:bg-[#0A1026]/80 hover:border-vision-cyan/50 hover:shadow-neon-cyan transition-all duration-500;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.shadow-neon-cyan {
+  box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/20 rounded-full hover:bg-primary/50 transition-colors;
+}
