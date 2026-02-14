@@ -416,7 +416,7 @@ const Portfolio = () => {
                         </a>
                     </div>
                     <div className="mt-8 text-sm text-slate-400 dark:text-slate-600">
-                        © 2025 Elijah BODIPO OBIANG. Construit avec React & Tailwind.
+                        © 2025 Elijah BODIPO OBIANG.
                     </div>
                 </div>
             </section>
