@@ -27,19 +27,6 @@ body {
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
-/* ───────────────────────────────────────
-   Dot Grid Background
-   ─────────────────────────────────────── */
-
-.dot-grid {
-  background-image: radial-gradient(circle, #cbd5e1 0.8px, transparent 0.8px);
-  background-size: 30px 30px;
-}
-
-.dark .dot-grid {
-  background-image: radial-gradient(circle, #1e293b 0.8px, transparent 0.8px);
-  background-size: 30px 30px;
-}
 
 /* ───────────────────────────────────────
    Custom Scrollbar — Light

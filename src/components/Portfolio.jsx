@@ -305,7 +305,7 @@ const Portfolio = () => {
             {/* Page Loader */}
             {isLoading && <PageLoader onFinish={() => setIsLoading(false)} />}
 
-            <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-200 font-sans selection:bg-emerald-500 selection:text-white relative dot-grid">
+            <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-200 font-sans selection:bg-emerald-500 selection:text-white relative">
 
                 {/* ── Navigation ── */}
                 <nav className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 py-4' : 'bg-transparent py-6'}`}>
@@ -390,8 +390,8 @@ const Portfolio = () => {
                                         key={id}
                                         onClick={() => scrollToSection(id)}
                                         className={`py-3 px-4 text-left text-base font-medium rounded-lg transition-all ${activeSection === id
-                                                ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                                                : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900'
+                                            ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                                            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900'
                                             }`}
                                     >
                                         {navLabels[id]}
