@@ -213,9 +213,9 @@ const ProjectCard = ({ project, onClick, delay }) => {
    Company Logos Data
    ─────────────────────────────────────── */
 const companyLogos = [
-    { name: 'bioMérieux', src: '/logos/biomerieux.png', url: 'https://www.biomerieux.com' },
-    { name: 'SEW-USOCOME', src: '/logos/sew-usocome.png', url: 'https://www.sew-eurodrive.fr' },
-    { name: 'Takasago', src: '/logos/takasago.png', url: 'https://www.takasago.com' },
+    { name: 'bioMérieux', src: '/logos/biomerieux.png', url: 'https://www.biomerieux.com', size: 'h-16 md:h-20' },
+    { name: 'SEW-USOCOME', src: '/logos/sew-usocome.png', url: 'https://www.sew-eurodrive.fr', size: 'h-16 md:h-20' },
+    { name: 'Takasago', src: '/logos/takasago.png', url: 'https://www.takasago.com', size: 'h-12 md:h-16' },
 ];
 
 /* ───────────────────────────────────────
@@ -483,7 +483,7 @@ const Portfolio = () => {
                                     <img
                                         src={company.src}
                                         alt={`Logo ${company.name}`}
-                                        className="h-12 md:h-16 w-auto object-contain logo-grayscale"
+                                        className={`${company.size} w-auto object-contain logo-grayscale`}
                                     />
                                 </a>
                             ))}
