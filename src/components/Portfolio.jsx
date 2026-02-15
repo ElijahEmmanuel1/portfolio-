@@ -716,7 +716,7 @@ const Portfolio = () => {
                             <div className="grid grid-cols-1 md:grid-cols-5 gap-8 stagger-children">
                                 {methodology.map((step) => (
                                     <div key={step.step} className="relative text-center group">
-                                        <div className="relative z-10 mx-auto w-24 h-24 flex items-center justify-center bg-white dark:bg-slate-950 border-2 border-slate-200 dark:border-slate-800 rounded-2xl text-4xl mb-4 group-hover:border-emerald-500 group-hover:shadow-lg group-hover:shadow-emerald-500/10 transition-all group-hover:scale-110">
+                                        <div className="relative z-10 mx-auto w-24 h-24 flex items-center justify-center bg-white dark:bg-slate-950 border-2 border-slate-200 dark:border-slate-800 rounded-2xl text-emerald-600 dark:text-emerald-500 mb-4 group-hover:border-emerald-500 group-hover:shadow-lg group-hover:shadow-emerald-500/10 transition-all group-hover:scale-110">
                                             {step.icon}
                                         </div>
                                         <div className="text-xs font-bold text-emerald-600 dark:text-emerald-500 mb-1 uppercase tracking-wider">Étape {step.step}</div>
@@ -751,7 +751,7 @@ const Portfolio = () => {
                                 >
                                     <div className="relative z-10">
                                         <div className="flex items-start justify-between mb-4">
-                                            <span className="text-3xl">{article.emoji}</span>
+                                            <div className="p-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-emerald-600 dark:text-emerald-500">{article.icon}</div>
                                             <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
                                                 <Clock className="w-3 h-3" />
                                                 {article.readTime}
@@ -952,7 +952,7 @@ const Portfolio = () => {
 
                             <div className="p-8 md:p-10">
                                 <div className="flex items-center gap-4 mb-6">
-                                    <span className="text-5xl">{selectedArticle.emoji}</span>
+                                    <div className="p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-emerald-600 dark:text-emerald-500">{selectedArticle.icon}</div>
                                     <div>
                                         <div className="flex items-center gap-3 text-sm text-slate-400 dark:text-slate-500 mb-1">
                                             <span>{selectedArticle.date}</span>

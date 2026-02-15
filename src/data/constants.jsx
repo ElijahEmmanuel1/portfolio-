@@ -1,4 +1,4 @@
-import { Server, Layers, Activity, Brain } from 'lucide-react';
+import { Server, Layers, Activity, Brain, Rocket, Bot, BarChart3 as BarChartIcon, Search, Crosshair, Wrench, FlaskConical, Container, Radio } from 'lucide-react';
 import { PipelineViz, GraphViz, ChartViz, RagViz } from '../components/visualizations';
 
 export const profileBio = `Ingénieur Data Scientist & MLOps junior, je me spécialise dans l'industrialisation de modèles IA et l'architecture de données haute performance. Jeune diplômé doté d'une solide base mathématique, je maîtrise l'intégralité du cycle de vie des modèles, de la modélisation statistique à la mise en production (CI/CD, Kubernetes, Dagster). Expert dans le déploiement de solutions GenAI (RAG) et l'automatisation de pipelines MLOps, j'ai pour objectif de transformer des POCs complexes en systèmes robustes, scalables et monitorés pour des environnements industriels.`;
@@ -171,7 +171,7 @@ export const articles = [
         tags: ["MLOps", "CI/CD", "Dagster", "Docker"],
         date: "Janvier 2025",
         readTime: "8 min",
-        emoji: "🚀"
+        icon: <Rocket className="w-6 h-6" />
     },
     {
         id: 2,
@@ -180,7 +180,7 @@ export const articles = [
         tags: ["GenAI", "LLM", "RAG", "LangChain"],
         date: "Décembre 2024",
         readTime: "6 min",
-        emoji: "🤖"
+        icon: <Bot className="w-6 h-6" />
     },
     {
         id: 3,
@@ -189,7 +189,7 @@ export const articles = [
         tags: ["MLflow", "Monitoring", "Drift", "Alerting"],
         date: "Novembre 2024",
         readTime: "7 min",
-        emoji: "📊"
+        icon: <BarChartIcon className="w-6 h-6" />
     },
     {
         id: 4,
@@ -198,7 +198,7 @@ export const articles = [
         tags: ["Data Engineering", "Testing", "Pydantic", "Qualité"],
         date: "Octobre 2024",
         readTime: "5 min",
-        emoji: "🔍"
+        icon: <Search className="w-6 h-6" />
     }
 ];
 
@@ -207,30 +207,30 @@ export const methodology = [
         step: 1,
         title: "Cadrage",
         description: "Définition du problème métier, des KPIs cibles et du périmètre de données disponibles.",
-        icon: "🎯"
+        icon: <Crosshair className="w-7 h-7" />
     },
     {
         step: 2,
         title: "Data Engineering",
         description: "Pipelines ETL robustes, validation de schéma, tests de qualité automatisés.",
-        icon: "🔧"
+        icon: <Wrench className="w-7 h-7" />
     },
     {
         step: 3,
         title: "Modélisation",
         description: "Expérimentations ML trackées (MLflow), feature engineering, optimisation hyperparamètres.",
-        icon: "🧪"
+        icon: <FlaskConical className="w-7 h-7" />
     },
     {
         step: 4,
         title: "Industrialisation",
         description: "Conteneurisation Docker, CI/CD, déploiement API (FastAPI) et orchestration.",
-        icon: "🏭"
+        icon: <Container className="w-7 h-7" />
     },
     {
         step: 5,
         title: "Monitoring",
         description: "Surveillance du drift, alerting automatique, retraining pipeline récurrent.",
-        icon: "📡"
+        icon: <Radio className="w-7 h-7" />
     }
 ];
