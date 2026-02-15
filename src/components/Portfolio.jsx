@@ -864,7 +864,7 @@ const Portfolio = () => {
                                         {formStatus === 'sending' && <span className="animate-spin">⏳</span>}
                                         {formStatus === 'sent' && <><CheckCircle2 className="w-5 h-5" /> Message envoyé !</>}
                                         {formStatus === 'error' && <><X className="w-5 h-5" /> Erreur, réessayez</>}
-                                        {formStatus === 'idle' && <><Send className="w-5 h-5" /> Envoyer le message</>}
+                                        {formStatus === 'idle' && <><img src="/icons/send.png" alt="" className="w-6 h-6" /> Envoyer le message</>}
                                     </button>
                                 </form>
                             </div>
@@ -875,20 +875,20 @@ const Portfolio = () => {
                                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Coordonnées directes</h3>
                                     <div className="space-y-4">
                                         <a href="mailto:bodipoobiangelijah@gmail.com" className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors group">
-                                            <div className="p-2 bg-slate-50 dark:bg-slate-800 rounded-lg group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
-                                                <Mail className="w-5 h-5" />
+                                            <div className="p-1.5 bg-slate-50 dark:bg-slate-800 rounded-lg group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
+                                                <img src="/icons/email.png" alt="" className="w-7 h-7" />
                                             </div>
                                             <span className="text-sm">bodipoobiangelijah@gmail.com</span>
                                         </a>
                                         <a href="tel:+33652704867" className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors group">
-                                            <div className="p-2 bg-slate-50 dark:bg-slate-800 rounded-lg group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
-                                                <Phone className="w-5 h-5" />
+                                            <div className="p-1.5 bg-slate-50 dark:bg-slate-800 rounded-lg group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
+                                                <img src="/icons/phone.png" alt="" className="w-7 h-7" />
                                             </div>
                                             <span className="text-sm">06 52 70 48 67</span>
                                         </a>
                                         <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
-                                            <div className="p-2 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                                                <MapPin className="w-5 h-5" />
+                                            <div className="p-1.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                                                <img src="/icons/location.png" alt="" className="w-7 h-7" />
                                             </div>
                                             <span className="text-sm">Lyon, France</span>
                                         </div>
@@ -899,11 +899,11 @@ const Portfolio = () => {
                                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Retrouvez-moi</h3>
                                     <div className="flex gap-3">
                                         <a href="https://github.com/elijah-bodipo" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700 transition-all text-sm font-medium">
-                                            <Github className="w-5 h-5" />
+                                            <img src="/icons/github.png" alt="" className="w-6 h-6" />
                                             GitHub
                                         </a>
                                         <a href="https://linkedin.com/in/elijah-bodipo" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700 transition-all text-sm font-medium">
-                                            <Linkedin className="w-5 h-5" />
+                                            <img src="/icons/linkedin.png" alt="" className="w-6 h-6" />
                                             LinkedIn
                                         </a>
                                     </div>
@@ -914,7 +914,7 @@ const Portfolio = () => {
                                     download
                                     className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-emerald-600/10 to-cyan-600/10 dark:from-emerald-500/10 dark:to-cyan-500/10 text-emerald-700 dark:text-emerald-400 py-3 rounded-xl font-bold border border-emerald-200/50 dark:border-emerald-800/50 hover:from-emerald-600/20 hover:to-cyan-600/20 transition-all hover:scale-[1.02] text-sm"
                                 >
-                                    <Download className="w-5 h-5" />
+                                    <img src="/icons/download.png" alt="" className="w-6 h-6" />
                                     Télécharger mon CV
                                 </a>
                             </div>
