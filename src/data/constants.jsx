@@ -1,4 +1,4 @@
-import { Server, Layers, Activity, Brain, Rocket, Bot, BarChart3 as BarChartIcon, Search, Crosshair, Wrench, FlaskConical, Container, Radio } from 'lucide-react';
+import { Server, Layers, Activity, Brain, Rocket, Bot, BarChart3 as BarChartIcon, Search, Crosshair, Wrench, FlaskConical, Container, Radio, Shield, Sparkles, GitBranch } from 'lucide-react';
 import { PipelineViz, GraphViz, ChartViz, RagViz } from '../components/visualizations';
 
 export const profileBio = `Ingénieur Data Scientist & MLOps junior, je me spécialise dans l'industrialisation de modèles IA et l'architecture de données haute performance. Jeune diplômé doté d'une solide base mathématique, je maîtrise l'intégralité du cycle de vie des modèles, de la modélisation statistique à la mise en production (CI/CD, Kubernetes, Dagster). Expert dans le déploiement de solutions GenAI (RAG) et l'automatisation de pipelines MLOps, j'ai pour objectif de transformer des POCs complexes en systèmes robustes, scalables et monitorés pour des environnements industriels.`;
@@ -232,5 +232,24 @@ export const methodology = [
         title: "Monitoring",
         description: "Surveillance du drift, alerting automatique, retraining pipeline récurrent.",
         icon: <Radio className="w-7 h-7" />
+    }
+];
+
+export const futureProjects = [
+    {
+        id: 1,
+        title: "BioTraceAI",
+        subtitle: "Intelligent Graph-Based Risk Detection & Explanation for Biomedical Manufacturing",
+        description: "Plateforme IA de détection de risques dans la chaîne de production biomédicale. Modélisation en graphe des relations entre lots, équipements et défauts pour identifier automatiquement les causes racines et générer des explications intelligibles pour les équipes qualité.",
+        stack: ["Neo4j", "GNN (Graph Neural Networks)", "Python", "FastAPI", "LangChain", "Docker"],
+        status: "En développement",
+        progress: 35,
+        goals: [
+            "Détection automatique d'anomalies dans les graphes de traçabilité",
+            "Explication en langage naturel des risques détectés (XAI)",
+            "Dashboard temps réel pour les responsables qualité",
+            "Intégration CI/CD pour déploiement continu du modèle"
+        ],
+        icon: <Shield className="w-6 h-6" />
     }
 ];

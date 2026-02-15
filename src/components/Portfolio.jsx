@@ -34,7 +34,7 @@ import {
     User,
     MessageSquare,
 } from 'lucide-react';
-import { projects, experiences, skills, education, languages, profileBio, articles, methodology } from '../data/constants';
+import { projects, experiences, skills, education, languages, profileBio, articles, methodology, futureProjects } from '../data/constants';
 import { useTheme } from '../hooks/useTheme';
 
 /* ───────────────────────────────────────
@@ -267,7 +267,7 @@ const Portfolio = () => {
     const [formStatus, setFormStatus] = useState('idle'); // idle, sending, sent, error
     const { isDark, toggleTheme } = useTheme();
 
-    const navSections = ['about', 'projets', 'approche', 'expérience', 'articles', 'formation', 'compétences', 'contact'];
+    const navSections = ['about', 'projets', 'lab', 'approche', 'expérience', 'articles', 'formation', 'compétences', 'contact'];
     const activeSection = useActiveSection(navSections);
     useScrollReveal();
 
@@ -325,6 +325,7 @@ const Portfolio = () => {
     const navLabels = {
         'about': 'About',
         'projets': 'Projets',
+        'lab': 'R&D Lab',
         'approche': 'Approche',
         'expérience': 'Expérience',
         'articles': 'Articles',
@@ -691,6 +692,88 @@ const Portfolio = () => {
                                             {items.map((skill) => (
                                                 <span key={skill} className="px-3 py-1.5 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm rounded-lg border border-slate-200/50 dark:border-slate-800/50 font-mono hover:border-emerald-400/50 dark:hover:border-emerald-500/50 hover:text-emerald-700 dark:hover:text-emerald-400 transition-all cursor-default">
                                                     {skill}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── Projets en Cours / Future Projects ── */}
+                <section id="lab" className="py-20 bg-slate-100/50 dark:bg-slate-900/50">
+                    <div className="container mx-auto px-6">
+                        <div className="reveal text-center mb-12">
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2 flex items-center justify-center gap-3">
+                                <Zap className="w-7 h-7 text-amber-500" />
+                                R&D Lab
+                            </h2>
+                            <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">Projets en cours de développement et projets de recherche.</p>
+                        </div>
+
+                        <div className="grid md:grid-cols-1 gap-8 max-w-3xl mx-auto stagger-children">
+                            {futureProjects.map((project) => (
+                                <div
+                                    key={project.id}
+                                    className="card-glow group bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl p-8 relative overflow-hidden"
+                                >
+                                    {/* Status badge */}
+                                    <div className="absolute top-6 right-6">
+                                        <span className="flex items-center gap-1.5 px-3 py-1 bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 text-xs font-bold rounded-full border border-amber-200/50 dark:border-amber-800/50">
+                                            <span className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse"></span>
+                                            {project.status}
+                                        </span>
+                                    </div>
+
+                                    <div className="relative z-10">
+                                        {/* Header */}
+                                        <div className="flex items-start gap-4 mb-5">
+                                            <div className="p-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-emerald-600 dark:text-emerald-500">
+                                                {project.icon}
+                                            </div>
+                                            <div>
+                                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{project.title}</h3>
+                                                <p className="text-emerald-600 dark:text-emerald-500 text-sm font-medium mt-0.5">{project.subtitle}</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Description */}
+                                        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">{project.description}</p>
+
+                                        {/* Progress bar */}
+                                        <div className="mb-6">
+                                            <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-2">
+                                                <span className="font-medium">Progression</span>
+                                                <span className="font-bold text-emerald-600 dark:text-emerald-500">{project.progress}%</span>
+                                            </div>
+                                            <div className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                                <div
+                                                    className="h-full bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full transition-all duration-1000"
+                                                    style={{ width: `${project.progress}%` }}
+                                                ></div>
+                                            </div>
+                                        </div>
+
+                                        {/* Goals */}
+                                        <div className="mb-6">
+                                            <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-3">Objectifs clés</h4>
+                                            <ul className="space-y-2">
+                                                {project.goals.map((goal, i) => (
+                                                    <li key={i} className="flex items-start gap-2 text-sm text-slate-500 dark:text-slate-400">
+                                                        <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                                                        {goal}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                        {/* Tech stack */}
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.stack.map((tech) => (
+                                                <span key={tech} className="px-2.5 py-1 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-xs rounded-lg font-mono border border-slate-200 dark:border-slate-800">
+                                                    {tech}
                                                 </span>
                                             ))}
                                         </div>
