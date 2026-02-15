@@ -28,6 +28,20 @@ body {
 }
 
 /* ───────────────────────────────────────
+   Dot Grid Background
+   ─────────────────────────────────────── */
+
+.dot-grid {
+  background-image: radial-gradient(circle, #cbd5e1 0.8px, transparent 0.8px);
+  background-size: 30px 30px;
+}
+
+.dark .dot-grid {
+  background-image: radial-gradient(circle, #1e293b 0.8px, transparent 0.8px);
+  background-size: 30px 30px;
+}
+
+/* ───────────────────────────────────────
    Custom Scrollbar — Light
    ─────────────────────────────────────── */
 
@@ -71,6 +85,57 @@ body {
 ::selection {
   background-color: #10b981;
   color: white;
+}
+
+/* ───────────────────────────────────────
+   Page Loader
+   ─────────────────────────────────────── */
+
+@keyframes loaderFadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes loaderPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.loader-fadeout {
+  animation: loaderFadeOut 0.5s ease-out forwards;
+}
+
+.loader-pulse {
+  animation: loaderPulse 1.2s ease-in-out infinite;
+}
+
+.progress-bar {
+  animation: progressBar 1.2s ease-out forwards;
 }
 
 /* ───────────────────────────────────────
@@ -308,6 +373,20 @@ body {
 
 .card-glow:hover::before {
   opacity: 1;
+}
+
+/* ───────────────────────────────────────
+   Company logos
+   ─────────────────────────────────────── */
+
+.logo-grayscale {
+  filter: grayscale(100%) opacity(0.5);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.logo-grayscale:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
 }
 
 /* ───────────────────────────────────────
