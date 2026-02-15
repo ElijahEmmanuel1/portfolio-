@@ -27,8 +27,14 @@ import {
     Briefcase,
     TrendingUp,
     Zap,
+    Send,
+    BookOpen,
+    Clock,
+    FileText,
+    User,
+    MessageSquare,
 } from 'lucide-react';
-import { projects, experiences, skills, education, languages, profileBio } from '../data/constants';
+import { projects, experiences, skills, education, languages, profileBio, articles, methodology } from '../data/constants';
 import { useTheme } from '../hooks/useTheme';
 
 /* ───────────────────────────────────────
@@ -257,9 +263,11 @@ const Portfolio = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showBackToTop, setShowBackToTop] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [selectedArticle, setSelectedArticle] = useState(null);
+    const [formStatus, setFormStatus] = useState('idle'); // idle, sending, sent, error
     const { isDark, toggleTheme } = useTheme();
 
-    const navSections = ['about', 'projets', 'expérience', 'formation', 'compétences'];
+    const navSections = ['about', 'projets', 'approche', 'expérience', 'articles', 'formation', 'compétences', 'contact'];
     const activeSection = useActiveSection(navSections);
     useScrollReveal();
 
@@ -292,12 +300,37 @@ const Portfolio = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        setFormStatus('sending');
+        const formData = new FormData(e.target);
+        try {
+            const res = await fetch('https://formspree.io/f/xpwzgkby', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+                setFormStatus('sent');
+                e.target.reset();
+                setTimeout(() => setFormStatus('idle'), 4000);
+            } else {
+                setFormStatus('error');
+            }
+        } catch {
+            setFormStatus('error');
+        }
+    };
+
     const navLabels = {
         'about': 'About',
         'projets': 'Projets',
+        'approche': 'Approche',
         'expérience': 'Expérience',
+        'articles': 'Articles',
         'formation': 'Formation',
-        'compétences': 'Compétences'
+        'compétences': 'Compétences',
+        'contact': 'Contact'
     };
 
     return (
@@ -668,43 +701,226 @@ const Portfolio = () => {
                     </div>
                 </section>
 
-                {/* ── Contact ── */}
+                {/* ── Mon Approche / Méthodologie ── */}
+                <section id="approche" className="py-20 bg-slate-100/50 dark:bg-slate-900/50">
+                    <div className="container mx-auto px-6">
+                        <div className="reveal text-center mb-16">
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Mon Approche End-to-End</h2>
+                            <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">De la compréhension du problème métier jusqu'au monitoring en production.</p>
+                        </div>
+
+                        <div className="relative">
+                            {/* Desktop: horizontal pipeline */}
+                            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-emerald-500/20 via-emerald-500 to-emerald-500/20"></div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-5 gap-8 stagger-children">
+                                {methodology.map((step) => (
+                                    <div key={step.step} className="relative text-center group">
+                                        <div className="relative z-10 mx-auto w-24 h-24 flex items-center justify-center bg-white dark:bg-slate-950 border-2 border-slate-200 dark:border-slate-800 rounded-2xl text-4xl mb-4 group-hover:border-emerald-500 group-hover:shadow-lg group-hover:shadow-emerald-500/10 transition-all group-hover:scale-110">
+                                            {step.icon}
+                                        </div>
+                                        <div className="text-xs font-bold text-emerald-600 dark:text-emerald-500 mb-1 uppercase tracking-wider">Étape {step.step}</div>
+                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{step.title}</h3>
+                                        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{step.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── Articles & Veille Technique ── */}
+                <section id="articles" className="py-20">
+                    <div className="container mx-auto px-6">
+                        <div className="reveal flex flex-col md:flex-row justify-between items-end mb-12">
+                            <div>
+                                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-3">
+                                    <BookOpen className="w-8 h-8 text-emerald-600 dark:text-emerald-500" />
+                                    Articles & Veille Technique
+                                </h2>
+                                <p className="text-slate-500 dark:text-slate-400">Réflexions et retours d'expérience sur le ML en production.</p>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8 stagger-children">
+                            {articles.map((article) => (
+                                <div
+                                    key={article.id}
+                                    onClick={() => setSelectedArticle(article)}
+                                    className="card-glow group bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl p-8 cursor-pointer hover:border-emerald-400/50 dark:hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg"
+                                >
+                                    <div className="relative z-10">
+                                        <div className="flex items-start justify-between mb-4">
+                                            <span className="text-3xl">{article.emoji}</span>
+                                            <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
+                                                <Clock className="w-3 h-3" />
+                                                {article.readTime}
+                                            </div>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                                            {article.title}
+                                        </h3>
+                                        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                                            {article.summary}
+                                        </p>
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex flex-wrap gap-2">
+                                                {article.tags.map((tag) => (
+                                                    <span key={tag} className="px-2 py-0.5 bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 text-xs rounded-full border border-slate-200 dark:border-slate-800 font-mono">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                            <span className="text-xs text-slate-400 dark:text-slate-500">{article.date}</span>
+                                        </div>
+                                        <div className="mt-4 flex items-center text-emerald-600 dark:text-emerald-500 text-sm font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                            Lire l'article <ArrowRight className="w-4 h-4 ml-1" />
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── Contact avec Formulaire ── */}
                 <section id="contact" className="py-20 border-t border-slate-200 dark:border-slate-900">
-                    <div className="container mx-auto px-6 text-center">
-                        <h2 className="reveal text-3xl font-bold text-slate-900 dark:text-white mb-6">Prêt à collaborer ?</h2>
-                        <p className="reveal text-slate-500 dark:text-slate-400 mb-8 max-w-xl mx-auto">
-                            Je suis actuellement ouvert aux opportunités en tant que Consultant Data Scientist & MLOps Engineer.
-                            Discutons de vos challenges industriels.
-                        </p>
-
-                        <div className="reveal flex flex-col sm:flex-row justify-center gap-4 mb-12">
-                            <a href="mailto:bodipoobiangelijah@gmail.com" className="flex items-center justify-center gap-2 bg-emerald-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-emerald-500 transition-all hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25">
-                                <Mail className="w-5 h-5" />
-                                bodipoobiangelijah@gmail.com
-                            </a>
-                            <a href="tel:+33652704867" className="flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 hover:scale-105">
-                                <Phone className="w-5 h-5" />
-                                06 52 70 48 67
-                            </a>
-                            <a
-                                href="/cv_Bodipo_Obiang.pdf"
-                                download
-                                className="flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700 hover:scale-105"
-                            >
-                                <Download className="w-5 h-5" />
-                                Télécharger mon CV
-                            </a>
+                    <div className="container mx-auto px-6">
+                        <div className="reveal text-center mb-12">
+                            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Prêt à collaborer ?</h2>
+                            <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
+                                Consultant Data Scientist & MLOps Engineer — discutons de vos challenges industriels.
+                            </p>
                         </div>
 
-                        <div className="flex justify-center gap-6 text-slate-400 dark:text-slate-500">
-                            <a href="https://github.com/elijah-bodipo" className="hover:text-slate-900 dark:hover:text-white transition-all hover:scale-125">
-                                <Github className="w-6 h-6" />
-                            </a>
-                            <a href="https://linkedin.com/in/elijah-bodipo" className="hover:text-slate-900 dark:hover:text-white transition-all hover:scale-125">
-                                <Linkedin className="w-6 h-6" />
-                            </a>
+                        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                            {/* Left: Form */}
+                            <div className="reveal">
+                                <form onSubmit={handleFormSubmit} className="space-y-5">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5 block">Nom</label>
+                                            <div className="relative">
+                                                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                                                <input
+                                                    type="text"
+                                                    name="name"
+                                                    required
+                                                    placeholder="Votre nom"
+                                                    className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5 block">Email</label>
+                                            <div className="relative">
+                                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    required
+                                                    placeholder="votre@email.com"
+                                                    className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5 block">Sujet</label>
+                                        <div className="relative">
+                                            <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                                            <input
+                                                type="text"
+                                                name="subject"
+                                                required
+                                                placeholder="Sujet de votre message"
+                                                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5 block">Message</label>
+                                        <div className="relative">
+                                            <MessageSquare className="absolute left-3 top-3.5 w-4 h-4 text-slate-400" />
+                                            <textarea
+                                                name="message"
+                                                required
+                                                rows="5"
+                                                placeholder="Décrivez votre projet ou besoin..."
+                                                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all text-sm resize-none"
+                                            ></textarea>
+                                        </div>
+                                    </div>
+                                    <button
+                                        type="submit"
+                                        disabled={formStatus === 'sending'}
+                                        className={`w-full flex items-center justify-center gap-2 py-3 rounded-lg font-bold transition-all text-sm ${formStatus === 'sent'
+                                            ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800'
+                                            : formStatus === 'error'
+                                                ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800'
+                                                : 'bg-emerald-600 dark:bg-emerald-500 text-white dark:text-slate-950 hover:bg-emerald-500 dark:hover:bg-emerald-400 hover:scale-[1.02] hover:shadow-lg hover:shadow-emerald-500/25'
+                                            }`}
+                                    >
+                                        {formStatus === 'sending' && <span className="animate-spin">⏳</span>}
+                                        {formStatus === 'sent' && <><CheckCircle2 className="w-5 h-5" /> Message envoyé !</>}
+                                        {formStatus === 'error' && <><X className="w-5 h-5" /> Erreur, réessayez</>}
+                                        {formStatus === 'idle' && <><Send className="w-5 h-5" /> Envoyer le message</>}
+                                    </button>
+                                </form>
+                            </div>
+
+                            {/* Right: Direct info */}
+                            <div className="reveal space-y-6">
+                                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6">
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Coordonnées directes</h3>
+                                    <div className="space-y-4">
+                                        <a href="mailto:bodipoobiangelijah@gmail.com" className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors group">
+                                            <div className="p-2 bg-slate-50 dark:bg-slate-800 rounded-lg group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
+                                                <Mail className="w-5 h-5" />
+                                            </div>
+                                            <span className="text-sm">bodipoobiangelijah@gmail.com</span>
+                                        </a>
+                                        <a href="tel:+33652704867" className="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors group">
+                                            <div className="p-2 bg-slate-50 dark:bg-slate-800 rounded-lg group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 transition-colors">
+                                                <Phone className="w-5 h-5" />
+                                            </div>
+                                            <span className="text-sm">06 52 70 48 67</span>
+                                        </a>
+                                        <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
+                                            <div className="p-2 bg-slate-50 dark:bg-slate-800 rounded-lg">
+                                                <MapPin className="w-5 h-5" />
+                                            </div>
+                                            <span className="text-sm">Lyon, France</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6">
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Retrouvez-moi</h3>
+                                    <div className="flex gap-3">
+                                        <a href="https://github.com/elijah-bodipo" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700 transition-all text-sm font-medium">
+                                            <Github className="w-5 h-5" />
+                                            GitHub
+                                        </a>
+                                        <a href="https://linkedin.com/in/elijah-bodipo" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-3 bg-slate-50 dark:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700 transition-all text-sm font-medium">
+                                            <Linkedin className="w-5 h-5" />
+                                            LinkedIn
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <a
+                                    href="/cv_Bodipo_Obiang.pdf"
+                                    download
+                                    className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-emerald-600/10 to-cyan-600/10 dark:from-emerald-500/10 dark:to-cyan-500/10 text-emerald-700 dark:text-emerald-400 py-3 rounded-xl font-bold border border-emerald-200/50 dark:border-emerald-800/50 hover:from-emerald-600/20 hover:to-cyan-600/20 transition-all hover:scale-[1.02] text-sm"
+                                >
+                                    <Download className="w-5 h-5" />
+                                    Télécharger mon CV
+                                </a>
+                            </div>
                         </div>
-                        <div className="mt-8 text-sm text-slate-400 dark:text-slate-600">
+
+                        <div className="mt-16 text-center text-sm text-slate-400 dark:text-slate-600">
                             © 2025 Elijah BODIPO OBIANG.
                         </div>
                     </div>
@@ -722,6 +938,47 @@ const Portfolio = () => {
                 )}
 
                 {/* ── Project Detail Modal ── */}
+
+                {/* ── Article Detail Modal ── */}
+                {selectedArticle && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm" onClick={() => setSelectedArticle(null)}>
+                        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl w-full max-w-2xl shadow-2xl relative animate-fade-in-up" onClick={e => e.stopPropagation()}>
+                            <button
+                                onClick={() => setSelectedArticle(null)}
+                                className="absolute top-4 right-4 p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all z-10 hover:scale-110 hover:rotate-90"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+
+                            <div className="p-8 md:p-10">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <span className="text-5xl">{selectedArticle.emoji}</span>
+                                    <div>
+                                        <div className="flex items-center gap-3 text-sm text-slate-400 dark:text-slate-500 mb-1">
+                                            <span>{selectedArticle.date}</span>
+                                            <span>•</span>
+                                            <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {selectedArticle.readTime}</span>
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{selectedArticle.title}</h3>
+                                    </div>
+                                </div>
+
+                                <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                                    {selectedArticle.summary}
+                                </p>
+
+                                <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">
+                                    {selectedArticle.tags.map((tag) => (
+                                        <span key={tag} className="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs rounded-full font-mono border border-emerald-200/50 dark:border-emerald-800/50">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {selectedProject && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm" onClick={() => setSelectedProject(null)}>
                         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl relative animate-fade-in-up" onClick={e => e.stopPropagation()}>

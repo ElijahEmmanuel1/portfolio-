@@ -162,3 +162,75 @@ export const skills = {
     "GenAI": ["LangChain", "RAG", "LLMs", "Vector Stores (ChromaDB)"],
     "Visualisation": ["Streamlit", "Grafana", "Shiny (R)"]
 };
+
+export const articles = [
+    {
+        id: 1,
+        title: "MLOps : Du POC au Pipeline de Production",
+        summary: "La majorité des projets ML échouent au passage en production. Dans cet article, je détaille les patterns architecturaux (Feature Store, Model Registry, CI/CD for ML) qui permettent de transformer un notebook Jupyter en service fiable et monitoré. Retour d'expérience sur l'industrialisation avec Dagster, Docker et GitLab CI.",
+        tags: ["MLOps", "CI/CD", "Dagster", "Docker"],
+        date: "Janvier 2025",
+        readTime: "8 min",
+        emoji: "🚀"
+    },
+    {
+        id: 2,
+        title: "RAG vs Fine-Tuning : Quand utiliser quoi ?",
+        summary: "Face à un cas d'usage GenAI, faut-il enrichir le contexte du LLM (RAG) ou adapter ses poids (Fine-Tuning) ? Comparaison systémique : coût, latence, fraîcheur des données, hallucinations. Mon verdict : le RAG couvre 80% des cas industriels, le Fine-Tuning excelle sur les domaines très spécialisés.",
+        tags: ["GenAI", "LLM", "RAG", "LangChain"],
+        date: "Décembre 2024",
+        readTime: "6 min",
+        emoji: "🤖"
+    },
+    {
+        id: 3,
+        title: "Monitoring de Modèles ML en Production",
+        summary: "Déployer un modèle n'est que le début. Comment détecter le Data Drift, le Concept Drift, et les dégradations silencieuses de performance ? Tour d'horizon des outils (MLflow, Evidently, Grafana) et des stratégies de retraining automatique que j'ai mises en place chez bioMérieux.",
+        tags: ["MLflow", "Monitoring", "Drift", "Alerting"],
+        date: "Novembre 2024",
+        readTime: "7 min",
+        emoji: "📊"
+    },
+    {
+        id: 4,
+        title: "Data Quality : Le maillon faible des projets IA",
+        summary: "Garbage In, Garbage Out. Avant de choisir un modèle, il faut valider la qualité des données. Je présente mon approche : Great Expectations pour les tests automatisés, Pydantic pour la validation de schéma, et des patterns de Data Contracts entre équipes. Exemples concrets issus de mes projets industriels.",
+        tags: ["Data Engineering", "Testing", "Pydantic", "Qualité"],
+        date: "Octobre 2024",
+        readTime: "5 min",
+        emoji: "🔍"
+    }
+];
+
+export const methodology = [
+    {
+        step: 1,
+        title: "Cadrage",
+        description: "Définition du problème métier, des KPIs cibles et du périmètre de données disponibles.",
+        icon: "🎯"
+    },
+    {
+        step: 2,
+        title: "Data Engineering",
+        description: "Pipelines ETL robustes, validation de schéma, tests de qualité automatisés.",
+        icon: "🔧"
+    },
+    {
+        step: 3,
+        title: "Modélisation",
+        description: "Expérimentations ML trackées (MLflow), feature engineering, optimisation hyperparamètres.",
+        icon: "🧪"
+    },
+    {
+        step: 4,
+        title: "Industrialisation",
+        description: "Conteneurisation Docker, CI/CD, déploiement API (FastAPI) et orchestration.",
+        icon: "🏭"
+    },
+    {
+        step: 5,
+        title: "Monitoring",
+        description: "Surveillance du drift, alerting automatique, retraining pipeline récurrent.",
+        icon: "📡"
+    }
+];
